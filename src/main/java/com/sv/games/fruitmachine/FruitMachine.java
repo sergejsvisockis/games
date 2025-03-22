@@ -97,10 +97,10 @@ public class FruitMachine {
         System.out.println(Arrays.toString(randomSlots));
 
         boolean won = fruitMachine.hasWonJackpot(randomSlots);
-        System.out.println(won);
+        System.out.println("Has won: " + won);
 
         BigDecimal refunded = fruitMachine.refundJackpotIfWon(won);
-        System.out.println(refunded);
+        System.out.println("An amount refunded: " + refunded);
 
         int numberOfAdjacentSlots = fruitMachine.getNumberOfAdjacentSlots(randomSlots);
         System.out.println("Number of adjacent slots: " + numberOfAdjacentSlots);
