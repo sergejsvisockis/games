@@ -24,12 +24,9 @@ public class PrizeCalculator {
 
         }
 
-        currentAmount.subtract(refundAmount); // TODO: verify that this works
-
         return refundAmount;
     }
 
-    // TODO: revisit this requirement, doesn't seem like to be correct
     private BigDecimal calculatePrizeIfNoMoneyAvailable(BigDecimal fullPrize, BigDecimal currentAmount) {
 
         if (fullPrize.longValue() > currentAmount.longValue()) {

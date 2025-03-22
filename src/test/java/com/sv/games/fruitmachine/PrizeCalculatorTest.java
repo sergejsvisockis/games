@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PrizeCalculatorTest {
+class PrizeCalculatorTest {
 
     private PrizeCalculator prizeCalculator = new PrizeCalculator();
 
