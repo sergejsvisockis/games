@@ -12,6 +12,7 @@ public class FruitMachine {
 
     private static final Deque<BigDecimal> MONEY_BANK = new ArrayDeque<>();
 
+    // TODO: Don't we add a player's money to the current amount as well?
     private static final BigDecimal CURRENT_AMOUNT = BigDecimal.valueOf(new Random().nextInt(3000));
 
     private static final BigDecimal SINGLE_PLAY_COST = BigDecimal.valueOf(500);
