@@ -20,7 +20,7 @@ public class FruitMachine {
 
         Color[] colorValues = Color.values();
 
-        Color[] result = new Color[Color.values().length];
+        Color[] result = new Color[colorValues.length];
 
         for (int i = 0; i <= result.length - 1; i++) {
 
