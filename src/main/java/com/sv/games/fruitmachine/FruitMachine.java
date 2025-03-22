@@ -12,6 +12,10 @@ public class FruitMachine {
 
     private static final Deque<BigDecimal> MONEY_BANK = new ArrayDeque<>();
 
+    private static final BigDecimal CURRENT_AMOUNT = BigDecimal.valueOf(new Random().nextInt(3000));
+
+    private static final BigDecimal SINGLE_PLAY_COST = BigDecimal.valueOf(500);
+
     Color[] generateRandomSlot() {
 
         Color[] colorValues = Color.values();
@@ -29,7 +33,7 @@ public class FruitMachine {
         return result;
     }
 
-    boolean hasWon(Color[] randomSlot) {
+    boolean hasWonJackpot(Color[] randomSlot) {
 
         int index = 1;
 
@@ -43,6 +47,34 @@ public class FruitMachine {
 
     }
 
+    BigDecimal refundJackpotIfWon(boolean hasWon) {
+        if (hasWon) {
+            return MONEY_BANK.peek();
+        }
+
+        return BigDecimal.ZERO;
+    }
+
+    int getNumberOfAdjacentSlots(Color[] randomSlot) {
+
+        int index = 1;
+
+        for (int i = 0; i < randomSlot.length - 1; i++) {
+
+            if (randomSlot[i] == randomSlot[i + 1]) {
+                index++;
+            }
+
+        }
+
+        if (index == 1) {
+            return 0;
+        }
+
+        return index;
+
+    }
+
     void storeMoney(BigDecimal amount) {
         if (amount == null || BigDecimal.ZERO.equals(amount)) {
             throw new IllegalArgumentException(EXCEPTION_MESSAGE);
@@ -51,29 +83,31 @@ public class FruitMachine {
         MONEY_BANK.add(amount);
     }
 
-    BigDecimal refundIfWon(boolean hasWon) {
-        if (hasWon) {
-            return MONEY_BANK.peek();
-        }
-
-        return BigDecimal.ZERO;
-    }
-
     public static void main(String[] args) {
 
         FruitMachine fruitMachine = new FruitMachine();
+        PrizeCalculator prizeCalculator = new PrizeCalculator();
+
+        System.out.println("Current amount: " + CURRENT_AMOUNT);
 
         BigDecimal fortune = BigDecimal.valueOf(500);
         fruitMachine.storeMoney(fortune);
 
-        Color[] randomSlot = fruitMachine.generateRandomSlot();
-        System.out.println(Arrays.toString(randomSlot));
+        Color[] randomSlots = fruitMachine.generateRandomSlot();
+        System.out.println(Arrays.toString(randomSlots));
 
-        boolean won = fruitMachine.hasWon(randomSlot);
+        boolean won = fruitMachine.hasWonJackpot(randomSlots);
         System.out.println(won);
 
-        BigDecimal refunded = fruitMachine.refundIfWon(won);
+        BigDecimal refunded = fruitMachine.refundJackpotIfWon(won);
         System.out.println(refunded);
+
+        int numberOfAdjacentSlots = fruitMachine.getNumberOfAdjacentSlots(randomSlots);
+        System.out.println("Number of adjacent slots: " + numberOfAdjacentSlots);
+
+        BigDecimal prize = prizeCalculator.calculateThePrize(numberOfAdjacentSlots,
+                CURRENT_AMOUNT, SINGLE_PLAY_COST);
+        System.out.println("The prize: " + prize);
 
     }
 

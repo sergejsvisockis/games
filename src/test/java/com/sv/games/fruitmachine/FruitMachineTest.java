@@ -22,7 +22,7 @@ class FruitMachineTest {
     }
 
     @Test
-    void shouldWin() {
+    void shouldWinJackpot() {
 
         //given
         Color[] colorValues = {
@@ -33,7 +33,7 @@ class FruitMachineTest {
         };
 
         //when
-        boolean result = fruitMachine.hasWon(colorValues);
+        boolean result = fruitMachine.hasWonJackpot(colorValues);
 
         //then
         assertTrue(result);
@@ -47,18 +47,18 @@ class FruitMachineTest {
                 Color.GREEN,
                 Color.WHITE,
                 Color.BLACK,
-                Color.GREEN
+                Color.YELLOW
         };
 
         //when
-        boolean result = fruitMachine.hasWon(colorValues);
+        boolean result = fruitMachine.hasWonJackpot(colorValues);
 
         //then
         assertFalse(result);
     }
 
     @Test
-    void shouldRefund() {
+    void shouldRefundJackpot() {
 
         //given
         final boolean won = true;
@@ -66,7 +66,7 @@ class FruitMachineTest {
         fruitMachine.storeMoney(amount);
 
         //when
-        BigDecimal refunded = fruitMachine.refundIfWon(won);
+        BigDecimal refunded = fruitMachine.refundJackpotIfWon(won);
 
         //then
         assertEquals(amount, refunded);
@@ -81,7 +81,7 @@ class FruitMachineTest {
         fruitMachine.storeMoney(amount);
 
         //when
-        BigDecimal refunded = fruitMachine.refundIfWon(won);
+        BigDecimal refunded = fruitMachine.refundJackpotIfWon(won);
 
         //then
         assertEquals(BigDecimal.ZERO, refunded);
@@ -104,4 +104,73 @@ class FruitMachineTest {
 
         assertEquals(EXCEPTION_MESSAGE, exception.getMessage());
     }
+
+    @Test
+    void shouldHaveAllSlotsAdjacent() {
+        //given
+        Color[] colorValues = {
+                Color.WHITE,
+                Color.WHITE,
+                Color.WHITE,
+                Color.WHITE
+        };
+
+        //when
+        int numberOfAdjacentSlots = fruitMachine.getNumberOfAdjacentSlots(colorValues);
+
+        //then
+        assertEquals(4, numberOfAdjacentSlots);
+    }
+
+    @Test
+    void shouldHaveTwoSlotsAdjacent() {
+        //given
+        Color[] colorValues = {
+                Color.WHITE,
+                Color.WHITE,
+                Color.BLACK,
+                Color.GREEN
+        };
+
+        //when
+        int numberOfAdjacentSlots = fruitMachine.getNumberOfAdjacentSlots(colorValues);
+
+        //then
+        assertEquals(2, numberOfAdjacentSlots);
+    }
+
+    @Test
+    void shouldHaveNoSlotsAdjacent() {
+        //given
+        Color[] colorValues = {
+                Color.WHITE,
+                Color.BLACK,
+                Color.GREEN,
+                Color.YELLOW
+        };
+
+        //when
+        int numberOfAdjacentSlots = fruitMachine.getNumberOfAdjacentSlots(colorValues);
+
+        //then
+        assertEquals(0, numberOfAdjacentSlots);
+    }
+
+    @Test
+    void shouldHaveNoSlotsAdjacentButHasTheSame() {
+        //given
+        Color[] colorValues = {
+                Color.WHITE,
+                Color.BLACK,
+                Color.GREEN,
+                Color.WHITE
+        };
+
+        //when
+        int numberOfAdjacentSlots = fruitMachine.getNumberOfAdjacentSlots(colorValues);
+
+        //then
+        assertEquals(0, numberOfAdjacentSlots);
+    }
+
 }
