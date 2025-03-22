@@ -19,7 +19,7 @@ class PrizeCalculatorTest {
         final BigDecimal singlePlayCost = BigDecimal.valueOf(100);
 
         //when
-        BigDecimal prize = prizeCalculator.calculateThePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
+        BigDecimal prize = prizeCalculator.calculatePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
 
         //then
         assertEquals(BigDecimal.valueOf(2500), prize);
@@ -34,7 +34,7 @@ class PrizeCalculatorTest {
         final BigDecimal singlePlayCost = BigDecimal.valueOf(100);
 
         //when
-        BigDecimal prize = prizeCalculator.calculateThePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
+        BigDecimal prize = prizeCalculator.calculatePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
 
         //then
         assertEquals(BigDecimal.valueOf(500), prize);
@@ -49,7 +49,7 @@ class PrizeCalculatorTest {
         final BigDecimal singlePlayCost = BigDecimal.valueOf(100);
 
         //when
-        BigDecimal prize = prizeCalculator.calculateThePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
+        BigDecimal prize = prizeCalculator.calculatePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
 
         //then
         assertEquals(BigDecimal.valueOf(500), prize);
@@ -64,7 +64,7 @@ class PrizeCalculatorTest {
         final BigDecimal singlePlayCost = BigDecimal.valueOf(100);
 
         //when
-        BigDecimal prize = prizeCalculator.calculateThePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
+        BigDecimal prize = prizeCalculator.calculatePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
 
         //then
         assertEquals(BigDecimal.valueOf(500), prize);
@@ -79,7 +79,7 @@ class PrizeCalculatorTest {
         final BigDecimal singlePlayCost = BigDecimal.valueOf(100);
 
         //when
-        BigDecimal prize = prizeCalculator.calculateThePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
+        BigDecimal prize = prizeCalculator.calculatePrize(numberOfAdjacentSlots, currentAmount, singlePlayCost);
 
         //then
         assertEquals(BigDecimal.valueOf(470), prize);

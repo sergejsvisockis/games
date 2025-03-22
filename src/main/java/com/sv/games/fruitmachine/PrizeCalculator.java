@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 
 public class PrizeCalculator {
 
-    BigDecimal calculateThePrize(int numberOfAdjacentSlots, BigDecimal currentAmount, BigDecimal singlePlayCost) {
+    BigDecimal calculatePrize(int numberOfAdjacentSlots, BigDecimal currentAmount, BigDecimal singlePlayCost) {
 
         BigDecimal refundAmount = BigDecimal.ZERO;
 

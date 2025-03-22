@@ -105,7 +105,7 @@ public class FruitMachine {
         int numberOfAdjacentSlots = fruitMachine.getNumberOfAdjacentSlots(randomSlots);
         System.out.println("Number of adjacent slots: " + numberOfAdjacentSlots);
 
-        BigDecimal prize = prizeCalculator.calculateThePrize(numberOfAdjacentSlots,
+        BigDecimal prize = prizeCalculator.calculatePrize(numberOfAdjacentSlots,
                 CURRENT_AMOUNT, SINGLE_PLAY_COST);
         System.out.println("The prize: " + prize);
 
